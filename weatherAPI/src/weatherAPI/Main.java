@@ -27,7 +27,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String API_KEY= "c382f83d09cb0dde54d4d2bb3e5121a5";
+		String API_KEY= "";
 		String LOCATION ="Honolulu";
 		String urlString = "https://api.openweathermap.org/data/2.5/weather?q="+LOCATION+"&appid="+API_KEY+"&units=metric";
 		
