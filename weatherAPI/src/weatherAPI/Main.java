@@ -1,12 +1,17 @@
 package weatherAPI;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.google.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.*;
+
 public class Main {
 	
 	
@@ -24,11 +29,23 @@ public class Main {
 		
 		String API_KEY= "c382f83d09cb0dde54d4d2bb3e5121a5";
 		String LOCATION ="Honolulu";
-		String urlString = "api.openweathermap.org/data/2.5/weather?q="+LOCATION+"&appid="+API_KEY+"&units=metric";
+		String urlString = "https://api.openweathermap.org/data/2.5/weather?q="+LOCATION+"&appid="+API_KEY+"&units=metric";
 		
 		try {
-			URL url = new URL(API_KEY);
-		} catch (MalformedURLException e) {
+			StringBuilder result = new StringBuilder();
+			URL url = new URL(urlString);
+			URLConnection conn= url.openConnection();
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			while((line = rd.readLine())!=null) {
+				result.append(line);
+			}
+			rd.close();
+			say(result);
+			
+			
+			
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
