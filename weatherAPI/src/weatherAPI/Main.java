@@ -43,6 +43,12 @@ public class Main {
 			rd.close();
 			say(result);
 			
+			Map<String, Object> respMap = jsonToMap(result.toString());
+			Map<String, Object> mainMap = jsonToMap(respMap.get("main").toString());
+			
+			say("Current temp: " + mainMap.get("temp"));
+
+			
 			
 			
 		} catch (IOException e) {
