@@ -24,12 +24,11 @@ public class Main extends JFrame{
         mainPanel = new Vis();
         setContentPane(mainPanel);
 
-        setSize(1000,800);
+        setSize(1920,1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Seth's Data Visualization");
+        setTitle("Seth's Info Canvas Protype");
         setVisible(true);
 
-		say("done fetchin data");
 		
 	}
 	
