@@ -9,9 +9,10 @@ import com.sun.source.tree.Tree;
 
 public class Background {
 	
-	Color soilColor;
+	Color sandColor;
 	Color waterColor;
 	Color cloudBG;
+	Color grassColor;
 	private boolean isCloudy = false;
 	private boolean isScatteredCloudy = false;
 	private boolean isRaining = false;
@@ -32,9 +33,10 @@ public class Background {
 	
 	public Background() {
 		// TODO Auto-generated constructor stub
-		soilColor = new Color(227, 217, 181);
+		sandColor = new Color(227, 217, 181);
 		waterColor = new Color(13, 153, 251);
 		cloudBG = new Color(135, 206, 255);
+		grassColor = new Color(105, 190, 69);
 		temperature= 0;
 		
 
@@ -45,8 +47,14 @@ public class Background {
 		// this is the soil
 		g.setColor(cloudBG);
 		g.fillRect(0, 0, w, (int) (w*.2));
-		g.setColor(soilColor);
-		g.fillRect(0, (int) (h*.3), w,(int) (h*.80));
+		
+		// sand
+		g.setColor(sandColor);
+		g.fillRect(0, (int) (w*.2), w, (int) (w*.2));
+
+		
+		g.setColor(grassColor);
+		g.fillRect(0, (int) (h*.5), w,(int) (h*.80));
 		
 		// draw the waters
 //		g.setColor(waterColor);

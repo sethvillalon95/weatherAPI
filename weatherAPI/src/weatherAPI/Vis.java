@@ -43,8 +43,6 @@ public class Vis extends JPanel {
         bg.setClouds(cloudName);
         bg.setTemp(temperature);
         bg.setWind(temperature);
-        Main.say("Cloud name is "+ cloudName);
-
         bg.draw(g, w, h);
                
     }

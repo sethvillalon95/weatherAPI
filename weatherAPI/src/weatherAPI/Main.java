@@ -3,6 +3,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -21,6 +24,8 @@ public class Main extends JFrame{
 
 	
 	public Main() {
+        JMenuBar mb = setupMenu();
+        setJMenuBar(mb);
         mainPanel = new Vis();
 
         setContentPane(mainPanel);
@@ -35,6 +40,26 @@ public class Main extends JFrame{
 		
 	}
 	
+	private JMenuBar setupMenu() {
+		// TODO Auto-generated method stub
+        JMenuBar menuBar = new JMenuBar();
+        JMenu fileMenu = new JMenu("Settings");
+        JMenuItem item1 = new JMenuItem("Update");
+        
+        item1.addActionListener(e -> {
+        	fetchData();
+        	repaint();
+        });
+        
+        fileMenu.add(item1);
+        menuBar.add(fileMenu);
+
+
+        
+        
+		return menuBar;
+	}
+
 	public void fetchData() {
 
 		String API_KEY= APIKEY.get();
@@ -67,15 +92,14 @@ public class Main extends JFrame{
 			// setting the temperature
 			String dummy = mainMap.get("temp").toString();
 			double temperature =Double.parseDouble(dummy);
-			mainPanel.setTemp(26);
+			mainPanel.setTemp(temperature);
 			
+			
+			// setting the wind
 			String wind = windMap.get("speed").toString();
 			mainPanel.setWind(Double.parseDouble(wind));
 			
 			
-//			say(mainMap.get("humidity"));
-//			say(mainMap.get("description"));
-
 
 			
 			
