@@ -11,13 +11,21 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Vis extends JPanel {
 	Background bg = new Background();
+	String cloudName;
+	double temperature;
+	double windSpeed;
 
     public Vis() {
         super();
+		cloudName = "";
+		temperature = 0;
+		windSpeed = 0;
+
         
     }
 
@@ -32,13 +40,28 @@ public class Vis extends JPanel {
         int x=0, y =0;
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
-        bg.draw(g, w, h);
-        
-             
-        
-       
+        bg.setClouds(cloudName);
+        bg.setTemp(temperature);
+        bg.setWind(temperature);
+        Main.say("Cloud name is "+ cloudName);
 
+        bg.draw(g, w, h);
+               
     }
+	public void setTemp(double temperature2) {
+		temperature = temperature2;
+		
+	}
+	
+	public void setClouds(String cloud) {
+		cloudName = cloud;
+		
+	}
+	
+	public void setWind(double spd) {
+		windSpeed = spd;
+		
+	}
     
     
 

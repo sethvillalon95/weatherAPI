@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,14 +21,16 @@ public class Main extends JFrame{
 
 	
 	public Main() {
-		fetchData();
         mainPanel = new Vis();
+
         setContentPane(mainPanel);
+        fetchData();
 
         setSize(1920,1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Seth's Info Canvas Protype");
         setVisible(true);
+
 
 		
 	}
@@ -35,7 +38,7 @@ public class Main extends JFrame{
 	public void fetchData() {
 
 		String API_KEY= APIKEY.get();
-		String LOCATION ="Honolulu";
+		String LOCATION ="Laie";
 		String urlString = "https://api.openweathermap.org/data/2.5/weather?q="+LOCATION+"&appid="+API_KEY+"&units=metric";
 		
 		try {
@@ -52,8 +55,27 @@ public class Main extends JFrame{
 			
 			Map<String, Object> respMap = jsonToMap(result.toString());
 			Map<String, Object> mainMap = jsonToMap(respMap.get("main").toString());
+			Map<String, Object> windMap = jsonToMap(respMap.get("wind").toString());
 			
-			say("Current temp: " + mainMap.get("temp"));
+			
+			// getting the clouds or general weather
+			String genWeather = respMap.get("weather").toString();
+			mainPanel.setClouds(genWeather);
+
+
+
+			// setting the temperature
+			String dummy = mainMap.get("temp").toString();
+			double temperature =Double.parseDouble(dummy);
+			mainPanel.setTemp(26);
+			
+			String wind = windMap.get("speed").toString();
+			mainPanel.setWind(Double.parseDouble(wind));
+			
+			
+//			say(mainMap.get("humidity"));
+//			say(mainMap.get("description"));
+
 
 			
 			
